@@ -59,17 +59,45 @@ int main(void)
 					exit(0);
 				}
 			}
+			else if (strcmp(args[0], "setenv") == 0)
+			{
+				if (argCount != 3)
+				{
+					write(STDERR_FILENO, "Usage: setenv VARIABLE VALUE\n", strlen("Usage: setenv VARIABLE VALUE\n"));
+				}
+				else 
+				{
+					if (setenv(args[1], args[2], 1) != 0)
+					{
+						write(STDERR_FILENO, "Failed to set environment variable\n", strlen("Failed to set environment variable\n"));
+					}
+				}
+			}
+			else if (strcmp(args[0], "unsetenv") == 0)
+			{
+				if (argCount != 2)
+				{
+					write(STDERR_FILENO, "Usage: unsetenv VARIABLE\n", strlen("Usage: unsetenv VARIABLE\n"));
+				}
+				else
+				{
+					if (unsetenv(args[1]) != 0)
+					{
+						write(STDERR_FILENO, "Failed to unset environment variable\n", strlen("Failed to unset environment variable\n"));
+					}
+				}
+			}
 			else if (strcmp(args[0], "env") == 0)
 			{
-					/* Handle the env command */
-					 const char** env = (const char**)environ;
-					 while(*env != NULL)
-					 {
-						 /* Print each environment variable */
-						 write(STDOUT_FILENO, *env, strlen(*env));
-						 write(STDOUT_FILENO, "\n", 1);
-						 env++;
-					 }
+				/* Handle the env command */
+				const char** env = (const char**)environ;
+				while(*env != NULL)
+				{
+					/* Print each environment variable */
+					write(STDOUT_FILENO, *env, strlen(*env));
+					write(STDOUT_FILENO, "\n", 1);
+					env++;
+				}
 			}
 			else
 			{
