@@ -16,6 +16,8 @@ int main(void)
 	char *path;
 	int numDirs;
 	char *executablePath;
+	int argCount;
+	int exitStatus;
 	pid_t pid;
 
 	/* get the value of path from the environment */
@@ -39,12 +41,23 @@ int main(void)
 		/* remove the new character from the end of the input replace it with a null terminator */
 		input[strcspn(input, "\n")] = '\0';
 
-		parseInput(input, args);
-		if (args[0] != NULL)
+		/* tokenize the input into arguments */
+		argCount = tokenizeInput(input, args);
+
+		if (argCount > 0)
 		{
 			if (strcmp(args[0], "exit") == 0)
 			{
-				break;
+				/* Check if additional argument is provided for the exit command */
+				if (argCount == 2)
+				{
+					exitStatus = atoi(args[1]);
+					exit(exitStatus);
+				}
+				else 
+				{
+					exit(0);
+				}
 			}
 			else if (strcmp(args[0], "env") == 0)
 			{

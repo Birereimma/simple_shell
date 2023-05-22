@@ -13,6 +13,8 @@
 #define MAX_ARGS 10
 #define MAX_DIRS 64
 #define BUFFER_SIZE 1024
+#define MAX_TOKENS 100
+#define MAX_TOKEN_SIZE 50
 
 void parseInput(char *input, char *args[]);
 void executeCommand(char *args[]);
@@ -20,6 +22,8 @@ int parsePath(const char *path, char *directories[]);
 char *findExecutable(const char *command, char *directories[], int numDirs);
 int parsePath(const char *path, char *directories[]);
 int custom_getline(char *buffer, size_t size);
+int tokenizeInput(const char *input, char *tokens[]);
+char *strtok_custom(char *str, const char *delim);
 
 
 #endif
