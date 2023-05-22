@@ -29,16 +29,10 @@ int main(void)
 		/* display a propt */
 		write(STDOUT_FILENO, prompt, sizeof(prompt) - 1);
 
-		/* read user input */
-		if (fgets(input, sizeof(input), stdin) == NULL)
+		/* read user input using custom_getline */
+		if (custom_getline(input, sizeof(input)) == -1)
 		{
-			/* print a new line if EOF is entered */
-			if (feof(stdin))
-			{
-				write(STDOUT_FILENO, "\n", 1);
-				break;
-			}
-			perror("fgets");
+			perror("custom_getline");
 			exit(EXIT_FAILURE);
 		}
 
