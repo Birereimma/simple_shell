@@ -10,7 +10,7 @@
 #include <errno.h>
 
 #define MAX_INPUT_SIZE 1024
-#define MAX_ARGS 10
+#define MAX_ARGS 64
 #define MAX_DIRS 64
 #define BUFFER_SIZE 1024
 #define MAX_TOKENS 100
@@ -24,6 +24,7 @@ int parsePath(const char *path, char *directories[]);
 int custom_getline(char *buffer, size_t size);
 int tokenizeInput(const char *input, char *tokens[]);
 char *strtok_custom(char *str, const char *delim);
+void changeDirectory(char *directory);
 
 
 #endif

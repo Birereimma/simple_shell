@@ -19,6 +19,7 @@ int main(void)
 	int argCount;
 	int exitStatus;
 	pid_t pid;
+	char *homeDir;
 
 	/* get the value of path from the environment */
 	path = getenv("PATH");
@@ -93,10 +94,31 @@ int main(void)
 				const char** env = (const char**)environ;
 				while(*env != NULL)
 				{
-					/* Print each environment variable */
-					write(STDOUT_FILENO, *env, strlen(*env));
-					write(STDOUT_FILENO, "\n", 1);
+					/* Skip Print each environment variable */
+					if (strncmp(*env, "PWD=", 4) != 0)
+					{
+						write(STDOUT_FILENO, *env, strlen(*env));
+						write(STDOUT_FILENO, "\n", 1);
+					}
 					env++;
+				}
+			}
+			else if (strcmp(args[0], "cd") == 0)
+			{
+				/* handle the cd command */
+				if (argCount == 1)
+				{
+					homeDir = getenv("HOME");
+					changeDirectory(homeDir);
+				}
+				else if (argCount == 2)
+				{
+					/* argument provided, change to the specific directory */
+					changeDirectory(args[1]);
+				}
+				else 
+				{
+					write(STDERR_FILENO, "cd: invalid usage\n", 18);
 				}
 			}
 			else
