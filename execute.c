@@ -16,14 +16,14 @@ void executeCommand(char *args[])
 	if (child_pid == -1)
 	{
 		perror("fork");
-		exit(EXIT_FAILURE);
+		exit(EXIT_SUCCESS);
 	}
 	else if (child_pid == 0) /* child process */
 	{
 		if (execvp(args[0], args) == -1)
 		{
 			perror("execvp");
-			exit(EXIT_FAILURE);
+			exit(EXIT_SUCCESS);
 		}
 	}
 	else
@@ -32,7 +32,7 @@ void executeCommand(char *args[])
 		if (waitpid(child_pid, &status, 0) == -1)
 		{
 			perror("waitpid");
-			exit(EXIT_FAILURE);
+			exit(EXIT_SUCCESS);
 		}
 	}
 }

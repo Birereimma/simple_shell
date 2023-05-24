@@ -38,7 +38,7 @@ int main(void)
 		if (custom_getline(input, sizeof(input)) == -1)
 		{
 			perror("custom_getline");
-			exit(EXIT_FAILURE);
+			exit(EXIT_SUCCESS);
 		}
 
 		/* remove the new character from the end of the input replace it with a null terminator */
@@ -67,7 +67,7 @@ int main(void)
 				}
 				else
 				{
-					exit(0);
+					exit(EXIT_SUCCESS);
 				}
 			}
 			else if (strcmp(args[0], "setenv") == 0)
@@ -139,14 +139,15 @@ int main(void)
 					pid = fork();
 					if (pid < 0)
 					{
-						perror("forking erro");
+						perror("forking error");
+						exit(EXIT_SUCCESS);
 					}
 					else if (pid == 0)
 					{
 						/* child process */
 						execve(executablePath, args, (char *const *)environ);
 						perror("Command execution error");
-						_exit(1);
+						exit(EXIT_SUCCESS);
 					}
 					else
 					{

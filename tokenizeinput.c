@@ -29,7 +29,7 @@ int tokenizeInput(const char *input, char *tokens[])
 		tokenCount++;
 	}
 	/* Set the last element of the array to NULL */
-	 tokens[tokenCount] = NULL;
+	tokens[tokenCount] = NULL;
 	return (tokenCount);
 }
 
@@ -64,6 +64,8 @@ char *strtok_custom(char *str, const char *delim)
 	currentToken = token;
 	token = nextToken;
 
+	free(nextToken);
+	free(token);
 	return (currentToken);
 }
 

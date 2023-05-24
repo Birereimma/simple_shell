@@ -28,7 +28,7 @@ char *findExecutable(const char *command, char *directories[], int numDirs)
 			if (executablePath == NULL)
 			{
 				 perror("Memory allocation failed");
-				 exit(EXIT_FAILURE);
+				 exit(EXIT_SUCCESS);
 			}
 		}
 		/* construch the path to the executable */

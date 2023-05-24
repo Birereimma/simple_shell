@@ -19,6 +19,7 @@ void parseInput(char *input, char *args[])
 		argCount++;
 		token = strtok(NULL, " ");
 	}
+	free(token);
 	args[argCount] = NULL;
 }
 

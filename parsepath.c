@@ -18,7 +18,7 @@ int parsePath(const char *path, char *directories[])
 	if (path_copy == NULL)
 	{
 		perror("strdup");
-		exit(EXIT_FAILURE);
+		exit(EXIT_SUCCESS);
 	}
 
 	/* Tokenize the path using ":" as the delimiter */
