@@ -7,7 +7,7 @@
  * Return: 0
  */
 
-void parseInput(char *input, char *args[])
+int parseInput(char *input, char *args[])
 {
 	char *token;
 	int argCount = 0;
@@ -15,11 +15,14 @@ void parseInput(char *input, char *args[])
 	token = strtok(input, " ");
 	while (token != NULL && argCount < MAX_ARGS - 1)
 	{
-		args[argCount] = token;
-		argCount++;
+		if (strlen(token) > 0)
+		{
+			args[argCount] = token;
+			argCount++;
+		}
 		token = strtok(NULL, " ");
 	}
-	free(token);
 	args[argCount] = NULL;
+	return (argCount);
 }
 

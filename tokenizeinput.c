@@ -63,9 +63,6 @@ char *strtok_custom(char *str, const char *delim)
 	}
 	currentToken = token;
 	token = nextToken;
-
-	free(nextToken);
-	free(token);
 	return (currentToken);
 }
 
