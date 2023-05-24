@@ -27,6 +27,7 @@ int tokenizeInput(const char *input, char *tokens[]);
 char *strtok_custom(char *str, const char *delim);
 void changeDirectory(char *directory);
 void parseCommands(char *input, char **commands);
+int alxProgram(void);
 
 
 #endif

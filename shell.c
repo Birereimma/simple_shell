@@ -101,7 +101,7 @@ int main(void)
 			else if (strcmp(args[0], "env") == 0)
 			{
 				/* Handle the env command */
-				const char **env = (const char)**environ;
+				const char **env = (const char **)environ;
 				while (*env != NULL)
 				{
 					/* Skip Print each environment variable */

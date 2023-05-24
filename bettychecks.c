@@ -1,13 +1,12 @@
-#include <stdio.h>
-#include <unistd.h>
+#include "shell.h"
 
 /**
- * main - entry point of the program
+ * alxProgram - print on the screen
  *
  * Return: always succes
  */
 
-int main(void)
+int alxProgram(void)
 {
 	int count;
 	char *message = "ALX programming program\n";
