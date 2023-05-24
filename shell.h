@@ -15,6 +15,7 @@
 #define BUFFER_SIZE 1024
 #define MAX_TOKENS 100
 #define MAX_TOKEN_SIZE 50
+#define MAX_COMMANDS 10
 
 void parseInput(char *input, char *args[]);
 void executeCommand(char *args[]);
@@ -25,6 +26,7 @@ int custom_getline(char *buffer, size_t size);
 int tokenizeInput(const char *input, char *tokens[]);
 char *strtok_custom(char *str, const char *delim);
 void changeDirectory(char *directory);
+void parseCommands(char *input, char **commands);
 
 
 #endif

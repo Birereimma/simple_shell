@@ -16,10 +16,12 @@ int main(void)
 	char *path;
 	int numDirs;
 	char *executablePath;
-	int argCount;
 	int exitStatus;
 	pid_t pid;
 	char *homeDir;
+	int argCount;
+	char *commands[MAX_COMMANDS];
+	int i;
 
 	/* get the value of path from the environment */
 	path = getenv("PATH");
@@ -41,6 +43,15 @@ int main(void)
 
 		/* remove the new character from the end of the input replace it with a null terminator */
 		input[strcspn(input, "\n")] = '\0';
+
+		/* Parse the input into commands */
+		parseCommands(input, commands);
+
+		/* Execute each command sequentially */
+		for (i = 0; commands[i] != NULL; i++)
+		{
+			 argCount = tokenizeInput(commands[i], args);
+		}
 
 		/* tokenize the input into arguments */
 		argCount = tokenizeInput(input, args);
