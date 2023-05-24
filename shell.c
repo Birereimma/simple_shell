@@ -29,7 +29,7 @@ int main(void)
 	/*plit the path into directories */
 	numDirs = parsePath(path, directories);
 
-	while(1)
+	while (1)
 	{
 		/* display a propt */
 		write(STDOUT_FILENO, prompt, sizeof(prompt) - 1);
@@ -55,7 +55,6 @@ int main(void)
 
 		/* tokenize the input into arguments */
 		argCount = tokenizeInput(input, args);
-
 		if (argCount > 0)
 		{
 			if (strcmp(args[0], "exit") == 0)
@@ -66,7 +65,7 @@ int main(void)
 					exitStatus = atoi(args[1]);
 					exit(exitStatus);
 				}
-				else 
+				else
 				{
 					exit(0);
 				}
@@ -77,7 +76,7 @@ int main(void)
 				{
 					write(STDERR_FILENO, "Usage: setenv VARIABLE VALUE\n", strlen("Usage: setenv VARIABLE VALUE\n"));
 				}
-				else 
+				else
 				{
 					if (setenv(args[1], args[2], 1) != 0)
 					{
@@ -102,8 +101,8 @@ int main(void)
 			else if (strcmp(args[0], "env") == 0)
 			{
 				/* Handle the env command */
-				const char** env = (const char**)environ;
-				while(*env != NULL)
+				const char **env = (const char)**environ;
+				while (*env != NULL)
 				{
 					/* Skip Print each environment variable */
 					if (strncmp(*env, "PWD=", 4) != 0)
@@ -127,7 +126,7 @@ int main(void)
 					/* argument provided, change to the specific directory */
 					changeDirectory(args[1]);
 				}
-				else 
+				else
 				{
 					write(STDERR_FILENO, "cd: invalid usage\n", 18);
 				}

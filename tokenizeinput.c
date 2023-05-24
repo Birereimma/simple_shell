@@ -19,7 +19,7 @@ int tokenizeInput(const char *input, char *tokens[])
 	inputCopy[MAX_TOKEN_SIZE - 1] = '\0';
 
 	token = strtok_custom(inputCopy, " \t");
-	while(token != NULL && tokenCount < MAX_TOKENS)
+	while (token != NULL && tokenCount < MAX_TOKENS)
 	{
 		/* Store the token in the array */
 		tokens[tokenCount] = strdup(token);
@@ -30,14 +30,13 @@ int tokenizeInput(const char *input, char *tokens[])
 	}
 	/* Set the last element of the array to NULL */
 	 tokens[tokenCount] = NULL;
-
-	 return (tokenCount);
+	return (tokenCount);
 }
 
 /**
  * strtok_custom - tokenises a string
  * @str: input string
- * @delm: character delimitator
+ * @delim: character delimitator
  * Return: alwats success
  */
 

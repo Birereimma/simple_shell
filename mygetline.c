@@ -12,9 +12,10 @@ int custom_getline(char *buffer, size_t size)
 	ssize_t bytesRead = 0;
 	ssize_t totalBytesRead = 0;
 
-	while(1)
+	while (1)
 	{
-		bytesRead = read(STDIN_FILENO, buffer + totalBytesRead, size - totalBytesRead);
+		bytesRead = read(STDIN_FILENO, buffer + totalBytesRead,
+				size - totalBytesRead);
 		if (bytesRead == -1)
 		{
 			if (errno == EINTR)

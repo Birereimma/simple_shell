@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * parsePath - tokenize the inputs
+ * @path: input command
+ * @directories: directories in the path
+ * Return: always success
+ */
+
 int parsePath(const char *path, char *directories[])
 {
 	int count = 0;
@@ -11,7 +18,7 @@ int parsePath(const char *path, char *directories[])
 	if (path_copy == NULL)
 	{
 		perror("strdup");
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 
 	/* Tokenize the path using ":" as the delimiter */

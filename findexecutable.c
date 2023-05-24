@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ * findExecutable - finds executable command
+ * @command: user input command
+ * @directories: directories found in the path
+ * @numDirs: number of directories
+ * Return: always success
+ */
+
 char *findExecutable(const char *command, char *directories[], int numDirs)
 {
 	char *executablePath;
@@ -13,17 +21,16 @@ char *findExecutable(const char *command, char *directories[], int numDirs)
 	{
 		dirLen = strlen(directories[i]);
 		pathLen = dirLen + commandLen + 2; /* +2 for '/' and '\0' */
-		if (pathLen > maxPathLen)
+		if (pathLen <  maxPathLen)
 		{
 			 maxPathLen = pathLen;
 			 executablePath = malloc(maxPathLen);
-			 if (executablePath == NULL)
-			 {
+			if (executablePath == NULL)
+			{
 				 perror("Memory allocation failed");
 				 exit(EXIT_FAILURE);
-			 }
+			}
 		}
-
 		/* construch the path to the executable */
 		strcpy(executablePath, directories[i]);
 		strcat(executablePath, "/");
@@ -38,5 +45,3 @@ char *findExecutable(const char *command, char *directories[], int numDirs)
 	free(executablePath);
 	return (NULL);
 }
-		
-
