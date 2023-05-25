@@ -3,6 +3,8 @@
 extern char *environ;
 /**
  * main - entry point of the program
+ * @argc: arguments count
+ * @argv: arguments in the command
  *
  * Return: 0 on success, 1 on fail
  */

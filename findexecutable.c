@@ -21,10 +21,11 @@ char *findExecutable(const char *command, char *directories[], int numDirs)
 	{
 		dirLen = strlen(directories[i]);
 		pathLen = dirLen + commandLen + 2; /* +2 for '/' and '\0' */
-		if (pathLen >  maxPathLen)
+		if (pathLen > maxPathLen)
 		{
-			 maxPathLen = pathLen;
-			 executablePath = malloc(maxPathLen);
+			maxPathLen = pathLen;
+			executablePath = malloc(maxPathLen);
+			
 			if (executablePath == NULL)
 			{
 				 perror("Memory allocation failed");

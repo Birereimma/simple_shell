@@ -1,6 +1,6 @@
 #include "shell.h"
 
-/*
+/**
  * changeDirectory - changes directory
  * @directory: specified directory
  * Return: void
@@ -18,7 +18,6 @@ void changeDirectory(char *directory)
 		if (directory == NULL)
 		{
 			write(STDERR_FILENO, "cd: OLDPWD not set\n", 19);
-			return;
 		}
 	}
 	if (chdir(directory) == 0)
@@ -30,7 +29,6 @@ void changeDirectory(char *directory)
 	else
 	{
 		write(STDERR_FILENO, "cd: error changing directory\n", 29);
-		return;
 	}
 	if (strcmp(prevDir, cwd) != 0)
 	{

@@ -17,6 +17,7 @@
 #define MAX_TOKEN_SIZE 50
 #define MAX_COMMANDS 10
 
+char *environ;
 int parseInput(char *input, char *args[]);
 void executeCommand(char *args[]);
 int parsePath(const char *path, char *directories[]);
