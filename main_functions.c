@@ -136,7 +136,7 @@ char *transArguments(char **ac, builtin *bt, char *av, int c, char **env)
 }
 
 /**
-* starLoop - starts the inifinite loop
+* startLoop - starts the inifinite loop
 * @bt: struct whit arguments builtin
 * @argv: name of the program
 * @env: environment

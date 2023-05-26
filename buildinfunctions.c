@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * getenv - search string
+ * _getenv - search string
  * @name: String name
  * @env: environment
  * Return: Pointer to the string
