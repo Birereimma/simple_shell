@@ -1,34 +1,49 @@
-#ifndef SHELL_H
-#define SHELL_H
-
+#ifndef _SHELL_H
+#define _SHELL_H
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <sys/wait.h>
-#include <errno.h>
 
-#define MAX_INPUT_SIZE 1024
-#define MAX_ARGS 64
-#define MAX_DIRS 64
-#define BUFFER_SIZE 1024
-#define MAX_TOKENS 100
-#define MAX_TOKEN_SIZE 50
-#define MAX_COMMANDS 10
+/**
+ *  struct builtin - builtins struct
+ *  @command: command to execute
+ *  @function: function that gets executed when that command is called
+ *	@type: type of process
+ */
 
-char *environ;
-int parseInput(char *input, char *args[]);
-void executeCommand(char *args[]);
-int parsePath(const char *path, char *directories[]);
-char *findExecutable(const char *command, char *directories[], int numDirs);
-int parsePath(const char *path, char *directories[]);
-int custom_getline(char *buffer, size_t size);
-int tokenizeInput(const char *input, char *tokens[]);
-char *strtok_custom(char *str, const char *delim);
-void changeDirectory(char *directory);
-void parseCommands(char *input, char **commands);
-int alxProgram(void);
+typedef struct builtin
+{
+	int type;
+	char *command;
+	int (*function)(void);
+} builtin;
 
-
+void startLoop(builtin *bt, char *, char **);
+int executeCommand(char *command, char **args, builtin *bt);
+builtin *checkBuiltin(char *str, builtin *bt);
+int equalStrinenv(char *str1, char *str2);
+int exit_shell(void);
+int printEnv(void);
+char *concatPath(char *command, char **);
+void concatString(char *dest, char *src, int offset);
+char **dividePath(char *str, char **);
+char **copyDoubleptr(char **dest, char **src, int size);
+void freeDoubleptr(char **ptr);
+int sizeDoubleptr(char **ptr);
+void signintHandle(int sign_num);
+char *_getenv(const char *name, char **);
+char *_strcpy(char *dest, char *src);
+char **divideLine(char *line, char *delim);
+int countToken(char *line, char *delim);
+char *prompt(char *text);
+int stringSize(char *str);
+void freePointers(char *line, char *path, char **arguments);
+char *transArguments(char **, builtin *, char *, int, char **);
+char *trans_Number(int number, int size);
+int countDigits(int number);
+void printErrordir(char *arg, char *line);
+void printErrors(char *arg, char *line, char *errorx, int count_errors, int);
 #endif
